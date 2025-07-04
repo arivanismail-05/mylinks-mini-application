@@ -1,0 +1,13 @@
+# Composer dependencies folder
+/vendor/
+
+# Environment file for secret keys and passwords
+# This file should NEVER be committed to GitHub
+.env
+
+# macOS and Windows system files
+.DS_Store
+Thumbs.db
+
+# Editor configuration files
+.vscode/
