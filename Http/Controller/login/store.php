@@ -10,7 +10,6 @@ $db = App::resolve(Database::class);
 
 $errors = [];
 $username = $_POST['username'];
-$email = $_POST['email'];
 $password = $_POST['password'];
 
 
@@ -20,10 +19,6 @@ if(empty($username))
     $errors['username'] = 'username required!';
 }
 
-if(Validation::email($password))
-{
-    $errors['email'] = 'email is not valid!';
-}
 
 if(!Validation::password($password,8,255))
 {
@@ -32,21 +27,20 @@ if(!Validation::password($password,8,255))
 
 
 
-if(! empty($errors)){
-    return veiw('register\create.view.php', [
-        'errors' => $errors
-    ]);
-}
-// echo $username. $password . $email;
-$user = new Authenticator();
-
-if($user->attempt($db,$username,$password)){
-    redirect('/login');
-}else{
-    $user->register($db,$username,$password,$email);
+if(empty($errors)){
+    $user = new Authenticator();
+    $result = $user->attempt($db,$username,$_POST['password']);
     
+
+if($result){
     redirect('/');
+}else{
+   redirect('/login');
 }
+}
+
+
+
     
 
 

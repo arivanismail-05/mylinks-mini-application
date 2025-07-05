@@ -4,12 +4,17 @@ namespace Core;
 
 class Validation
 {
-    public static function password($password,$min =1,$max = INF)
+    public static function password($password,$min = 1,$max = INF)
     {
 
         $password = trim($password);
+        $value = strlen($password);
 
-        return $password >= $min && $password <= $max;
+        if($value >= $min && $value <= $max){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

@@ -9,6 +9,7 @@ require base_path('Core/Router.php');
 require base_path('Core/Container.php');
 require base_path('Core/Database.php');
 require base_path('Core/Validation.php');
+require base_path('Core/Authenticator.php');
 require base_path('Core/App.php');
 require base_path('bootstrap.php');
 
