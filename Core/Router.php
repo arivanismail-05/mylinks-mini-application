@@ -24,6 +24,11 @@ class Router
         return $this->add($url,$contorller,'GET');
     }
 
+    public function post($url,$contorller)
+    {
+        return $this->add($url,$contorller,'POST');
+    }
+
     public function route($url,$method)
     {
         foreach($this->routes as $route){

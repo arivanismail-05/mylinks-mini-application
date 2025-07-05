@@ -2,12 +2,13 @@
 
 use Core\Container;
 use Core\Database;
+use Core\App;
 
 
 $container = new Container();
 
 
-$container->bind( 'Core\database',function(){
+$container->bind(Database::class,function(){
     $config = require base_path('config.php');
 
     return new Database($config['database']);
@@ -15,5 +16,4 @@ $container->bind( 'Core\database',function(){
 
 );
 
-
- var_dump($container->resolve('Core\database'));
+App::setContainer($container);

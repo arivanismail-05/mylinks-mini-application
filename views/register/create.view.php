@@ -17,6 +17,10 @@
         <div class="mt-2">
           <input type="username" name="username" id="username" autocomplete="username"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
         </div>
+        <?php if(isset($errors['username'])): ?>
+
+        <p id="filled_error_help" class="mt-2 text-italic text-xs text-red-600 dark:text-red-400 font-medium"><?= htmlspecialchars($errors['username'] )?></p>
+        <?php endif ?>
       </div>
 
 
@@ -25,6 +29,11 @@
         <div class="mt-2">
           <input type="email" name="email" id="email" autocomplete="email"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
         </div>
+        <?php if(isset($errors['email'])): ?>
+
+        <p id="filled_error_help" class="mt-2 text-italic text-xs text-red-600 dark:text-red-400 font-medium"><?= htmlspecialchars($errors['email'] )?></p>
+        <?php endif ?>
+
       </div>
 
 
@@ -35,6 +44,11 @@
         <div class="mt-2">
           <input type="password" name="password" id="password" autocomplete="current-password"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
         </div>
+        <?php if(isset($errors['password'])): ?>
+
+        <p id="filled_error_help" class="mt-2 text-italic text-xs text-red-600 dark:text-red-400 font-medium"><?= htmlspecialchars($errors['password'] )?></p>
+        <?php endif ?>
+
       </div>
 
       <div>
