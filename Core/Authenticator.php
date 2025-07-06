@@ -61,7 +61,7 @@ class Authenticator
         $ss->login($username,$userID);
     }
 
-    public function logout()
+    public static function logout()
     {
         (new Session)->destroy();
     }
