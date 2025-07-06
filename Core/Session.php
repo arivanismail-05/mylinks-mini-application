@@ -4,42 +4,54 @@ namespace Core;
 
 class Session
 {
-    
-    public static function put($key,$value)
-    {
-        $_SESSION[$key] = $value;
+
+
+     public $username;
+     public $userID;
+     public $isLoggedIn;
+
+
+        public function __construct(){
+        $this->Check_login();
     }
 
 
-    public static function flash($key,$value)
-    {
-        $_SESSION['_flash'][$key] = $value;
+
+      public function login($username,$userID){
+        $_SESSION['username'] = $username;
+        $_SESSION['userID'] = $userID;
+        $_SESSION['isLoggedIn'] = true;
+        $this->username = $username;
+        $this->userID = $userID;
+        $this->isLoggedIn = true;
     }
 
-    public static function get($key,$default = null)
-    {
-        if(isset($_SESSION['_flash'][$key])){
-            return $_SESSION['_flash'][$key];
+    public function logout(){
+        unset($_SESSION['username']);
+        unset($_SESSION['userID']);
+        unset($_SESSION['isLoggedIn']);
+        unset($this->username);
+        unset($this->userID);
+        unset($this->isLoggedIn);
+    }
+
+    private function Check_login(){
+        if(isset($_SESSION['username']) && isset($_SESSION['isLoggedIn'])){
+            $this->username = $_SESSION['username'];
+            $this->userID = $_SESSION['userID'];
+            $this->isLoggedIn = true;
+        } else {
+            unset($this->username);
+            unset($this->userID);
+            unset($this->isLoggedIn);
         }
-
-        return $_SESSION[$key] ?? $default;
     }
 
 
-    public static function unflash()
+  
+    public function destroy()
     {
-        unset($_SESSION['_flash']);
-    }
-
-
-    public static function flush()
-    {
-        $_SESSION = [];
-    }
-
-    public static function destroy()
-    {
-        static::flush();
+        $this->logout();
         session_destroy();
         $params = session_get_cookie_params();
         setcookie(session_name(), '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);

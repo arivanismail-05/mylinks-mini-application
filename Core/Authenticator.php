@@ -4,16 +4,22 @@ namespace Core;
 
 class Authenticator
 {
+    public $userID;
+    public $username;
 
     public function attempt($db,$username,$password)
     {
         $user = $db->query(('select * from users where username = :username'), [
             ':username' => $username
         ])->find();
+       
+        
 
         if($user){
             if(password_verify($password,$user['password'])){
-               $this->login($user['username']);
+                $this->username = $user['username'];
+                $this->userID = $user['id'];
+                $this->login($this->username,$this->userID);
                return true;
             }
             
@@ -34,9 +40,14 @@ class Authenticator
             ':email' => $email,
             ':password' => password_hash($password,PASSWORD_BCRYPT)
         ]);
-
         if($user){
-            $this->login($user);
+            $user = $db->query(('select * from users where username = :username'), [
+            ':username' => $username
+        ])->find();
+            $this->username = $user['username'];
+            $this->userID = $user['id'];
+            $this->login($this->username,$this->userID);
+
             return true;
         }
 
@@ -44,20 +55,15 @@ class Authenticator
     }
 
 
-
-
-
-    public function login($user)
+    public function login($username,$userID)
     {
-        $_SESSION['user'] =  $user;
-        // session_regenerate_id(true);
-
+        $ss =  new Session();
+        $ss->login($username,$userID);
     }
 
-
-    public static function logout()
+    public function logout()
     {
-        Session::destroy();
+        (new Session)->destroy();
     }
 
 

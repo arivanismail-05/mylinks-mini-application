@@ -3,6 +3,7 @@
 use Core\App;
 use Core\Authenticator;
 use Core\Database;
+use Core\Session;
 use Core\Validation;
 
 $db = App::resolve(Database::class);
@@ -11,7 +12,6 @@ $db = App::resolve(Database::class);
 $errors = [];
 $username = $_POST['username'];
 $password = $_POST['password'];
-
 
 
 if(empty($username))
@@ -29,15 +29,19 @@ if(!Validation::password($password,8,255))
 
 if(empty($errors)){
     $user = new Authenticator();
-    $result = $user->attempt($db,$username,$_POST['password']);
-    
+    $result = $user->attempt($db,$username,$password);
 
 if($result){
-    redirect('/');
+   redirect('/');
+
 }else{
-   redirect('/login');
+redirect('/login');
 }
 }
+
+return veiw('login\create.view.php',[
+    'errors' => $errors
+]);
 
 
 

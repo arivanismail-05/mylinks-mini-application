@@ -44,7 +44,6 @@ if($user->attempt($db,$username,$password)){
     redirect('/login');
 }else{
     $user->register($db,$username,$password,$email);
-    
     redirect('/');
 }
     
