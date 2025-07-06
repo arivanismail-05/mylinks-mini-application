@@ -4,10 +4,10 @@ use Core\App;
 
 $db = App::resolve(Database::class);
 $results = $db->query("
-    SELECT users.id AS user_id, users.username, links.name AS link_name, links.link
+    SELECT  users.username, links.name AS link_name, links.link
     FROM links
     JOIN users ON users.id = links.user_id
-")->get(); // Assuming ->get() returns all rows
+")->get();
 
 
 $grouped = [];
