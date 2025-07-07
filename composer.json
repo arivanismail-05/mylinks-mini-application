@@ -1,0 +1,17 @@
+{
+    "name": "dell/mylinks-mini-application",
+    "authors": [
+        {
+            "name": "Arivan Ismail",
+            "email": "187494087+arivanismail-05@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+
+    "autoload": {
+    "psr-4": {
+        "Core\\": "core/",
+        "Http\\": "http/"
+    }
+}
+}

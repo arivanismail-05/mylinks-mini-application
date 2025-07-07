@@ -6,16 +6,8 @@ const BASE_PATH = __DIR__ . '\..\\';
 
 
 require BASE_PATH. 'Core\function.php';
-require base_path('Core/Router.php');
-require base_path('Core/Container.php');
-require base_path('Core/Database.php');
-require base_path('Core/Validation.php');
-require base_path('Core/Authenticator.php');
-require base_path('Core/Session.php');
-require base_path('Core/App.php');
-require base_path('Core/Middleware/Auth.php');
-require base_path('Core/Middleware/Guest.php');
-require base_path('Core/Middleware/Middleware.php');
+
+require base_path('vendor/autoload.php');
 require base_path('bootstrap.php');
 
 $router = new Router();
